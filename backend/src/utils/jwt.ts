@@ -15,14 +15,14 @@ export interface TokenPayload {
 }
 
 export function generateAccessToken(payload: TokenPayload): string {
-  return jwt.sign(payload, accessSecret, {
-    expiresIn: accessExpiry,
+  return jwt.sign(payload, accessSecret as string, {
+    expiresIn: accessExpiry as string,
   });
 }
 
 export function generateRefreshToken(payload: TokenPayload): string {
-  return jwt.sign(payload, refreshSecret, {
-    expiresIn: refreshExpiry,
+  return jwt.sign(payload, refreshSecret as string, {
+    expiresIn: refreshExpiry as string,
   });
 }
 

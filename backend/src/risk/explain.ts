@@ -59,8 +59,6 @@ export function generateExplanation(inputs: ExplanationInputs): string[] {
   if (location?.zoneName) {
     const zoneType = location.zoneName.toLowerCase().includes('high') ? 'high-risk' : 'low-risk';
     bullets.push(`Inside ${zoneType} zone: ${location.zoneName}`);
-  } else if (location?.isNormalZone) {
-    bullets.push('User is outside all predefined risk zones (normal area)');
   } else if (location?.lat && location?.lng) {
     bullets.push(`Location: ${location.lat.toFixed(4)}, ${location.lng.toFixed(4)}`);
   }
@@ -80,8 +78,8 @@ export function generateExplanation(inputs: ExplanationInputs): string[] {
   }
 
   // Final summary line
-  const riskLevel = snapshot.level === 'high' ? 'High Risk' : 
-                   snapshot.level === 'medium' ? 'Medium Risk' : 'Low Risk';
+  const riskLevel = snapshot.level === 'high' ? 'High Risk' :
+    snapshot.level === 'medium' ? 'Medium Risk' : 'Low Risk';
   bullets.push(`→ Final Score: ${snapshot.total.toFixed(0)}/100 (${riskLevel})`);
 
   return bullets;
